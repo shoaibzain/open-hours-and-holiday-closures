@@ -1,0 +1,172 @@
+.ohhc-open-hours {
+    --ohhc-accent: #1f5eff;
+    --ohhc-radius: 14px;
+    --ohhc-surface: #ffffff;
+    --ohhc-surface-soft: #f4f7fb;
+    --ohhc-border: #d6deea;
+    --ohhc-divider: rgba(0, 0, 0, 0.05);
+    --ohhc-text: #162032;
+    --ohhc-muted: #58657a;
+    --ohhc-open-color: #0f9d58;
+    --ohhc-open-ring: rgba(15, 157, 88, 0.16);
+    --ohhc-closed-color: #d93025;
+    --ohhc-closed-ring: rgba(217, 48, 37, 0.12);
+    --ohhc-notice-bg: rgba(31, 94, 255, 0.08);
+    --ohhc-badge-open-bg: rgba(15, 157, 88, 0.12);
+    --ohhc-badge-open-text: #0f9d58;
+    --ohhc-badge-closed-bg: rgba(217, 48, 37, 0.1);
+    --ohhc-badge-closed-text: #b42318;
+    --ohhc-badge-neutral-bg: rgba(31, 94, 255, 0.1);
+    border: 1px solid var(--ohhc-border);
+    border-radius: var(--ohhc-radius);
+    background: linear-gradient(180deg, var(--ohhc-surface) 0%, var(--ohhc-surface-soft) 100%);
+    color: var(--ohhc-text);
+    padding: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.ohhc-open-hours.ohhc-preset-soft {
+    --ohhc-surface: #f7fbff;
+    --ohhc-surface-soft: #eef5ff;
+}
+
+.ohhc-open-hours.ohhc-preset-contrast {
+    --ohhc-surface: #0f172a;
+    --ohhc-surface-soft: #172033;
+    --ohhc-border: #2b3954;
+    --ohhc-divider: rgba(255, 255, 255, 0.08);
+    --ohhc-text: #f8fbff;
+    --ohhc-muted: #b8c4d8;
+}
+
+.ohhc-open-hours.is-compact {
+    padding: 12px 14px;
+}
+
+.ohhc-open-hours__header,
+.ohhc-open-hours__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ohhc-open-hours__header + .ohhc-open-hours__today,
+.ohhc-open-hours__header + .ohhc-open-hours__schedule {
+    margin-top: 14px;
+}
+
+.ohhc-open-hours__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.ohhc-open-hours__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ohhc-closed-color);
+    box-shadow: 0 0 0 4px var(--ohhc-closed-ring);
+}
+
+.ohhc-open-hours__status.is-open .ohhc-open-hours__dot {
+    background: var(--ohhc-open-color);
+    box-shadow: 0 0 0 4px var(--ohhc-open-ring);
+}
+
+.ohhc-open-hours__status.is-closed .ohhc-open-hours__dot {
+    background: var(--ohhc-closed-color);
+    box-shadow: 0 0 0 4px var(--ohhc-closed-ring);
+}
+
+.ohhc-open-hours__next,
+.ohhc-open-hours__today-label,
+.ohhc-open-hours__hours-note,
+.ohhc-open-hours__reopen,
+.ohhc-open-hours__override-label {
+    color: var(--ohhc-muted);
+}
+
+.ohhc-open-hours__today-hours {
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.ohhc-open-hours__notice {
+    margin-top: 14px;
+    border-left: 3px solid var(--ohhc-accent);
+    background: var(--ohhc-notice-bg);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.ohhc-open-hours__schedule {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ohhc-open-hours__row {
+    display: grid;
+    grid-template-columns: minmax(96px, 1fr) 2fr;
+    gap: 12px;
+    padding: 8px 0;
+    border-top: 1px solid var(--ohhc-divider);
+}
+
+.ohhc-open-hours__row:first-child {
+    border-top: 0;
+}
+
+.ohhc-open-hours__row.is-today .ohhc-open-hours__day {
+    color: var(--ohhc-accent);
+    font-weight: 700;
+}
+
+.ohhc-open-hours__hours {
+    font-weight: 600;
+}
+
+.ohhc-open-hours__hours.is-closed {
+    color: var(--ohhc-muted);
+    font-weight: 500;
+}
+
+.ohhc-open-hours__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.ohhc-open-hours__badge-text {
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--ohhc-badge-neutral-bg);
+    color: var(--ohhc-accent);
+}
+
+.ohhc-open-hours__badge.is-closed .ohhc-open-hours__badge-text {
+    background: var(--ohhc-badge-closed-bg);
+    color: var(--ohhc-badge-closed-text);
+}
+
+.ohhc-open-hours__badge.is-open .ohhc-open-hours__badge-text {
+    background: var(--ohhc-badge-open-bg);
+    color: var(--ohhc-badge-open-text);
+}
+
+.ohhc-open-hours__override-label {
+    font-size: 12px;
+}
+
+@media (max-width: 640px) {
+    .ohhc-open-hours__row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
