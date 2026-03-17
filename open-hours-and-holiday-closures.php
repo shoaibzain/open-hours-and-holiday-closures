@@ -3,7 +3,7 @@
  * Plugin Name:       Open Hours and Holiday Closures
  * Plugin URI:        https://wordpress.org/plugins/open-hours-and-holiday-closures/
  * Description:       Show live open or closed status, weekly business hours, holiday overrides, and temporary closure notices.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Author:            Zainaster
  * Author URI:        https://profiles.wordpress.org/shoaibzain/
  * Text Domain:       open-hours-and-holiday-closures
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('OHHC_VERSION', '0.1.1');
+define('OHHC_VERSION', '0.1.2');
 define('OHHC_FILE', __FILE__);
 define('OHHC_BASENAME', plugin_basename(__FILE__));
 define('OHHC_PATH', plugin_dir_path(__FILE__));

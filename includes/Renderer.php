@@ -59,6 +59,7 @@ final class Renderer
             'labels'                    => [
                 'open'       => __('Open now', 'open-hours-and-holiday-closures'),
                 'closed'     => __('Closed now', 'open-hours-and-holiday-closures'),
+                /* translators: %s: next opening text such as "today at 9:00 AM". */
                 'opens_next' => __('Opens %s', 'open-hours-and-holiday-closures'),
                 'closed_day' => __('Closed today', 'open-hours-and-holiday-closures'),
             ],
@@ -184,16 +185,18 @@ final class Renderer
             $styles[] = '--ohhc-radius:' . $border_radius . 'px';
         }
 
+        if ('badge' === $view) {
+            $view_markup = self::render_badge_view($state, $args);
+        } elseif ('today' === $view) {
+            $view_markup = self::render_today_view($state, $args);
+        } else {
+            $view_markup = self::render_full_view($state, $settings, $args);
+        }
+
         ob_start();
         ?>
         <div class="<?php echo \esc_attr(implode(' ', $classes)); ?>"<?php if ($styles) : ?> style="<?php echo \esc_attr(implode(';', $styles)); ?>"<?php endif; ?>>
-            <?php if ('badge' === $view) : ?>
-                <?php echo self::escape_rendered_markup(self::render_badge_view($state, $args)); ?>
-            <?php elseif ('today' === $view) : ?>
-                <?php echo self::escape_rendered_markup(self::render_today_view($state, $args)); ?>
-            <?php else : ?>
-                <?php echo self::escape_rendered_markup(self::render_full_view($state, $settings, $args)); ?>
-            <?php endif; ?>
+            <?php echo \wp_kses($view_markup, self::get_allowed_html_tags()); ?>
         </div>
         <?php
 
@@ -244,6 +247,7 @@ final class Renderer
             $closure_notice = $settings['temporary_closure_message'];
             if (!empty($settings['reopen_date_text'])) {
                 $closure_notice .= ' ' . sprintf(
+                    /* translators: %s: human readable expected reopen date text. */
                     __('Expected to reopen: %s', 'open-hours-and-holiday-closures'),
                     $settings['reopen_date_text']
                 );
@@ -540,6 +544,7 @@ final class Renderer
 
         if ($next_open->format('Y-m-d') === $now->format('Y-m-d')) {
             return sprintf(
+                /* translators: %s: time formatted according to site settings. */
                 __('today at %s', 'open-hours-and-holiday-closures'),
                 $next_open->format($time_format)
             );
@@ -547,12 +552,14 @@ final class Renderer
 
         if ($next_open->format('Y-m-d') === $now->modify('+1 day')->format('Y-m-d')) {
             return sprintf(
+                /* translators: %s: time formatted according to site settings. */
                 __('tomorrow at %s', 'open-hours-and-holiday-closures'),
                 $next_open->format($time_format)
             );
         }
 
         return sprintf(
+            /* translators: 1: weekday name, 2: time formatted according to site settings. */
             __('%1$s at %2$s', 'open-hours-and-holiday-closures'),
             $next_open->format('l'),
             $next_open->format($time_format)
@@ -633,7 +640,7 @@ final class Renderer
     /**
      * @return array<string, array<string, bool>>
      */
-    private static function get_allowed_html_tags(): array
+    public static function get_allowed_html_tags(): array
     {
         return [
             'div'  => [

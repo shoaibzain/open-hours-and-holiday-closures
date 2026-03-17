@@ -88,6 +88,7 @@ final class Settings
                     Plugin::OPTION_NAME,
                     'ohhc_invalid_override_date_' . $index,
                     sprintf(
+                        /* translators: %d: override row number. */
                         __('Ignored override row %d because the date was invalid.', 'open-hours-and-holiday-closures'),
                         $index + 1
                     ),
@@ -101,6 +102,7 @@ final class Settings
                     Plugin::OPTION_NAME,
                     'ohhc_empty_override_' . $index,
                     sprintf(
+                        /* translators: %d: override row number. */
                         __('Ignored override row %d because it had no valid time range.', 'open-hours-and-holiday-closures'),
                         $index + 1
                     ),
@@ -325,6 +327,7 @@ final class Settings
                     Plugin::OPTION_NAME,
                     'ohhc_invalid_range_' . sanitize_key($label . '_' . $index),
                     sprintf(
+                        /* translators: 1: day label, 2: time range number. */
                         __('Ignored incomplete time range %2$d for %1$s.', 'open-hours-and-holiday-closures'),
                         $label,
                         $index + 1
@@ -371,6 +374,7 @@ final class Settings
                     Plugin::OPTION_NAME,
                     'ohhc_invalid_override_range_' . $row_number . '_' . $index,
                     sprintf(
+                        /* translators: 1: override row number, 2: time range number. */
                         __('Ignored incomplete time range %2$d in override row %1$d.', 'open-hours-and-holiday-closures'),
                         $row_number,
                         $index + 1

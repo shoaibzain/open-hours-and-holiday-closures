@@ -4,7 +4,7 @@ Tags: business hours, open now, store hours, holiday hours, office hours
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,11 @@ No. Elementor support is optional.
 No. This plugin only focuses on business hours and closure messaging.
 
 == Changelog ==
+
+= 0.1.2 =
+* Added translators comments for all placeholder-based translation strings.
+* Updated escaped output patterns to use PHPCS-recognized `wp_kses()` calls at final echo points.
+* Removed hidden `.gitignore` file from the plugin root for directory submission compatibility.
 
 = 0.1.1 =
 * Escaped rendered output variables at final echo points.
