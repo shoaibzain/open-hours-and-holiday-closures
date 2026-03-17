@@ -4,7 +4,7 @@ Tags: business hours, open now, store hours, holiday hours, office hours
 Requires at least: 6.2
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,7 @@ Features:
 * Holiday and special-date overrides
 * Temporary closure notices
 * Dynamic Gutenberg block
-* Shortcode: `[open_hours]`
+* Shortcode: `[ohhc_open_hours]`
 * Optional Elementor widget when Elementor is active
 
 == Installation ==
@@ -38,6 +38,11 @@ No. Elementor support is optional.
 No. This plugin only focuses on business hours and closure messaging.
 
 == Changelog ==
+
+= 0.1.1 =
+* Escaped rendered output variables at final echo points.
+* Renamed shortcode to a prefixed tag: `[ohhc_open_hours]`.
+* Renamed public helper function to a prefixed name: `ohhc_render_open_hours()`.
 
 = 0.1.0 =
 * Initial release.

@@ -14,6 +14,7 @@ if (!defined('ABSPATH')) {
 final class Plugin
 {
     public const OPTION_NAME = 'ohhc_settings';
+    public const SHORTCODE_TAG = 'ohhc_open_hours';
 
     private static ?self $instance = null;
 
@@ -79,7 +80,7 @@ final class Plugin
 
     public function register_shortcode(): void
     {
-        add_shortcode('open_hours', function ($atts): string {
+        add_shortcode(self::SHORTCODE_TAG, function ($atts): string {
             $atts = shortcode_atts(
                 [
                     'view'                => 'badge',
@@ -91,7 +92,7 @@ final class Plugin
                     'border_radius'       => '',
                 ],
                 (array) $atts,
-                'open_hours'
+                self::SHORTCODE_TAG
             );
 
             return $this->render(

@@ -16,6 +16,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Widget_Base;
 use OpenHoursHolidayClosures\Plugin;
+use OpenHoursHolidayClosures\Renderer;
 
 final class Business_Hours_Widget extends Widget_Base
 {
@@ -615,7 +616,7 @@ final class Business_Hours_Widget extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
 
-        echo Plugin::instance()->render(
+        echo Renderer::escape_rendered_markup(Plugin::instance()->render(
             [
                 'view'                => $settings['view'] ?? 'badge',
                 'show_status'         => ($settings['show_status'] ?? '') === 'yes',
@@ -625,6 +626,6 @@ final class Business_Hours_Widget extends Widget_Base
                 'accent_color'        => $settings['accent_color'] ?? '',
                 'border_radius'       => isset($settings['border_radius']['size']) ? (int) $settings['border_radius']['size'] : '',
             ]
-        );
+        ));
     }
 }

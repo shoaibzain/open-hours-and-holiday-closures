@@ -186,13 +186,13 @@ final class Renderer
 
         ob_start();
         ?>
-        <div class="<?php echo esc_attr(implode(' ', $classes)); ?>"<?php echo $styles ? ' style="' . esc_attr(implode(';', $styles)) . '"' : ''; ?>>
+        <div class="<?php echo \esc_attr(implode(' ', $classes)); ?>"<?php if ($styles) : ?> style="<?php echo \esc_attr(implode(';', $styles)); ?>"<?php endif; ?>>
             <?php if ('badge' === $view) : ?>
-                <?php echo self::render_badge_view($state, $args); ?>
+                <?php echo self::escape_rendered_markup(self::render_badge_view($state, $args)); ?>
             <?php elseif ('today' === $view) : ?>
-                <?php echo self::render_today_view($state, $args); ?>
+                <?php echo self::escape_rendered_markup(self::render_today_view($state, $args)); ?>
             <?php else : ?>
-                <?php echo self::render_full_view($state, $settings, $args); ?>
+                <?php echo self::escape_rendered_markup(self::render_full_view($state, $settings, $args)); ?>
             <?php endif; ?>
         </div>
         <?php
@@ -623,5 +623,33 @@ final class Renderer
         }
 
         return array_values(array_unique($sanitized));
+    }
+
+    public static function escape_rendered_markup(string $markup): string
+    {
+        return \wp_kses($markup, self::get_allowed_html_tags());
+    }
+
+    /**
+     * @return array<string, array<string, bool>>
+     */
+    private static function get_allowed_html_tags(): array
+    {
+        return [
+            'div'  => [
+                'class' => true,
+                'style' => true,
+            ],
+            'span' => [
+                'class'       => true,
+                'aria-hidden' => true,
+            ],
+            'ul'   => [
+                'class' => true,
+            ],
+            'li'   => [
+                'class' => true,
+            ],
+        ];
     }
 }
